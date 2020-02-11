@@ -1,0 +1,17 @@
+<h1><%= @user.name %>'s Profile</h1> 
+
+<% if session[:user_id] == @user.id %> 
+<%= button_to "edit profile", edit_user_path, method: "get" %>
+<% end%>
+
+<br>
+
+<img src="<%=@user.photo%>" width="200" height="200" >
+<h2>Username: <%= @user.user_name %></h2>
+
+<h3>Hometown: <%= @user.hometown %></h3>
+<h4>Age: <%= @user.age %></h4>
+<p>About <%= @user.first_name %>: <%= @user.bio %></p>
+
+
+

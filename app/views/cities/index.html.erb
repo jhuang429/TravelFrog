@@ -1,0 +1,45 @@
+
+
+
+  <!-- Portfolio Section -->
+  <section class="page-section portfolio" id="portfolio">
+    <div class="container">
+
+      <!-- Portfolio Section Heading -->
+      <h1 class="page-section-heading text-center text-uppercase text-secondary mb-0">All Cities</h1>
+
+      <!-- Icon Divider -->
+      <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
+      <!-- Portfolio Grid Items -->
+      <div class="row">
+
+<% @cities.sort_by{|city| city.name}.each do |city| %>
+       
+    
+
+
+        <!-- each city -->
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+              <div class="portfolio-item-caption-content text-center text-white">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <a href="/cities/<%= city.id %>">
+            <img class="img-fluid" src="<%=city.photo%>" style="width:400px;height:300px;overflow:hidden" >
+            </a>
+            <h4><%= city.name%> </h4>
+          </div>
+        </div>
+
+        <% end %>
+
+

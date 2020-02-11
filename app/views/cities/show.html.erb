@@ -1,0 +1,30 @@
+<% require 'wikipedia' %>
+
+
+<h1><%= @city.name %></h1> </br>
+<h3>Country: <%= @city.country %></h3><br>
+
+<%= button_to 'Add to Bucket List', new_trip_path%>
+
+
+<img src="<%=@city.photo%>" width="500" height="500" >
+
+
+<h2>Info: </h2>
+<p><%= Wikipedia.find("#{@city.name}").text.split('. ').slice(0, 1).join('. ')%></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

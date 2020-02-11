@@ -1,0 +1,73 @@
+// Place all the styles related to the Main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.jumbotron  {
+  background-image: url('https://www.gannett-cdn.com/-mm-/9e1f6e2ee20f44aa1f3be4f71e9f3e52b6ae2c7e/c=0-110-2121-1303/local/-/media/2019/04/26/USATODAY/usatsports/MotleyFool-TMOT-510581ed-vacation.jpg?width=1320&height=744&fit=crop&format=pjpg&auto=webp');
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-size: cover;
+  height: 100vh;
+
+}
+
+.display-3 {
+    opacity: 0.70;
+}
+
+
+header {
+  position: relative;
+  background-color: black;
+  height: 75vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+header .container {
+  position: relative;
+  z-index: 2;
+}
+
+header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.00;
+  z-index: 1;
+}
+
+@media (pointer: coarse) and (hover: none) {
+  header {
+    background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+    height: 50vh;
+    
+  }
+  header video {
+    display: none;
+  }
+}
+
+  
+.lead {
+text-align: bottom;
+}
