@@ -21,7 +21,7 @@
         <hr>
 
 		<% if @city.avg_rating > 0 %>
-			Overall rating: <%= @city.avg_rating.round(2)  %>
+			Overall rating: <%= @city.avg_rating.round(2)%> stars
 		<% end %>
 
 			<% if session[:user_id] %>
@@ -87,9 +87,9 @@
 	<% @city.trips.each do |trip| %>
 			<%if trip.rating && trip.review %>
 				<div class="media mb-4">
-				<img class="d-flex mr-3 rounded-circle" src="<%= trip.user.photo %>" width="50px",width="50px">
+				<a href="/users/<%= trip.user.id%>"> <img class="d-flex mr-3 rounded-circle" src="<%= trip.user.photo %>" width="50px",width="50px"> </a>
 				<div class="media-body">
-					<h5 class="mt-0"><%= trip.user.user_name %>   </strong> rated: <%=  trip.rating  %> stars</h5>
+					<h5 class="mt-0"><a href="/users/<%= trip.user.id%>"> <%= trip.user.user_name %>  </a> </strong> rated: <%=  trip.rating  %> star(s)</h5>
 					<%= trip.review %>
 				</div>
 				</div>

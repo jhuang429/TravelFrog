@@ -52,4 +52,16 @@ class City < ApplicationRecord
 
     end 
 
+    def cheap_flight
+
+        response = Unirest.get "https://travelpayouts-travelpayouts-flight-data-v1.p.rapidapi.com/v1/prices/cheap?destination=#{selfairport_code}&origin=JFK&currency=USD&page=None",
+    headers:{
+        "X-RapidAPI-Host" => "travelpayouts-travelpayouts-flight-data-v1.p.rapidapi.com",
+        "X-RapidAPI-Key" => "79e8994724msh9d1fabde5ed6ebbp1d50f1jsn9248e1921f53",
+        "X-Access-Token" => "0f09eec1c74af0f0af0f6d53911b53aa"
+    }
+    response.body
+    end
+
+
 end

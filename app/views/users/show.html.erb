@@ -63,9 +63,12 @@
                 <br>
                 <h4>Age: <%= @user.age %></h4>
                 <p>Bio: <%= @user.first_name %>: <%= @user.bio %></p>
-                <h4>Hometown: <%= @user.hometown %></h4>
+                <h5>Hometown: <%= @user.hometown %></h5>
+				<p></p>
+				<p></p>
+				<p></p> 	
 
-            <h3> My Favorite Cities </h3>
+            <h2> My Favorite Cities: </h2>
 			   <% @user.trips.each do |trip| %>
                 <a href="/cities/<% trip.city.id%>"> <img src='<%= trip.city.photo%>' height="200" width="200"> </a>   
                 <%end %>

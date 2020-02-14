@@ -40,12 +40,13 @@
 
 
 
-# 50.times do 
-#     User.create!(first_name: Faker::Name.first_name, 
-#     last_name: Faker::Name.last_name, user_name: Faker::Twitter.screen_name, password: "123", bio:"Hello people", photo:UiFaces.face, hometown: Faker::Address.country, age: "31")
-# end
+people = []
+50.times do 
+    people << User.create!(first_name: Faker::Name.first_name, 
+    last_name: Faker::Name.last_name, user_name: Faker::Twitter.screen_name, password: "123", bio:"Hello people", photo:UiFaces.face, hometown: Faker::Address.country, age: "31")
+end
 
-User.all.each do |user|
+people.each do |user|
     Trip.create(user: user, city: City.all.sample, rating: [1,2,3,4.5].sample, review: Faker::Hipster.paragraph(sentence_count: 3) )
     Trip.create(user: user, city: City.all.sample, rating: [1,2,3,4.5].sample, review: Faker::Hipster.paragraph(sentence_count: 3) )
     Trip.create(user: user, city: City.all.sample, rating: [1,2,3,4.5].sample, review: Faker::Hipster.paragraph(sentence_count: 3) )
