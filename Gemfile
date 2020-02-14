@@ -11,8 +11,14 @@ gem 'bootstrap', '~> 4.4.1'
 
 gem 'jquery-rails'
 
+gem 'rubysl-cgi', '~> 2.0', '>= 2.0.1'
+
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'ui_faces'
+
+gem 'json', '~> 1.8', '>= 1.8.3'
+
+gem 'httparty', '~> 0.13.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'

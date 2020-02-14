@@ -4,6 +4,7 @@ class CreateCities < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :country
       t.string :photo
+      t.string :weather_url
 
       t.timestamps
     end

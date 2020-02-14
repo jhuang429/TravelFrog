@@ -1,4 +1,10 @@
 <h1> Sign Up for New Account </h1>
+<% if flash[:errors] %>
+   <% flash[:errors].each do |error|%>
+      <%=error%><br>
+    <%end %>
+    <%end %>
+    
 <%= render 'form' %>
 
 <br>

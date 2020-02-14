@@ -2,12 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+h1 {
+  text-align: center;
+}
+
 .jumbotron  {
   background-image: url('https://www.gannett-cdn.com/-mm-/9e1f6e2ee20f44aa1f3be4f71e9f3e52b6ae2c7e/c=0-110-2121-1303/local/-/media/2019/04/26/USATODAY/usatsports/MotleyFool-TMOT-510581ed-vacation.jpg?width=1320&height=744&fit=crop&format=pjpg&auto=webp');
   background-repeat: no-repeat;
   background-size: auto;
   background-size: cover;
   height: 100vh;
+  position: fixed; 
 
 }
 
@@ -20,7 +25,7 @@ header {
   position: relative;
   background-color: black;
   height: 75vh;
-  min-height: 25rem;
+  min-height: 47rem;
   width: 100%;
   overflow: hidden;
 }
@@ -59,7 +64,7 @@ header .overlay {
 @media (pointer: coarse) and (hover: none) {
   header {
     background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
-    height: 50vh;
+    height: 60vh;
     
   }
   header video {
@@ -70,4 +75,15 @@ header .overlay {
   
 .lead {
 text-align: bottom;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 30% 30% 30% 30%;
+}
+
+.grid-item {
+  height: 30%;
+  width: 30%;
 }

@@ -14,9 +14,9 @@
 
 
 <!-- NavBar Start  -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-    <img src=https://lh3.googleusercontent.com/proxy/CmGIoJ2SPgkl0Syo3ZRLHYqpny_jUDm2K-my4I4oHHxYxeR0YLnQOY5_4YfqmbF8aL8eaj28tgxXkVbjPPtMi4ZR3i4nKUkKgpVLqTbH_VQz1dTUYzOT-RZ4l0NZ-ICs89cuH9-RZkeKoXU style="width:50px">
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: white">
+    <div class="container-fluid full-width">
+    <%= image_tag("frog.png", width:"3.5%") %>
       <a class="navbar-brand" href="/">Travel Frog</a> 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,14 +31,11 @@
           <li class="nav-item">
             <a class="nav-link" href="/cities/">Cities</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-
 
           <% if session[:user_id]%>
           <li class="nav-item">
-            <a class="nav-link" href="/profile">My Profile</a>
+            <a class="nav-link" href="/users/<%= session[:user_id] %>"> Hi, <%= User.find(session[:user_id]).first_name%></a>
+          </li>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
@@ -65,3 +62,11 @@
     <%= yield %>
   </body>
 </html>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; 2020, Jerry Huang & Mokhtar Ali</p>
+    </div>
+    <!-- /.container -->
+  </footer>

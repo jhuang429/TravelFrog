@@ -7,21 +7,26 @@ class TripsController < ApplicationController
 
     def create
         @trip = Trip.create(trip_params)
+        redirect_to city_path(@trip.city)
 
-        
     end
 
     def edit
     end
 
     def update
+        @trip.update(trip_params)
+
+        redirect_to city_path(@trip.city)
     end
 
     def delete
+        city = @trip.city
+        @trip.destroy
+        redirect_to city_path(city)
     end
     
         
-    end
 
 
 

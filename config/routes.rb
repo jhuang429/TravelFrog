@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/signout', to:'sessions#delete'
 
+  delete '/trips/:id', to: 'trips#delete', as: 'delete_trip_path'
 
   resources :trips
   resources :cities
@@ -18,5 +19,6 @@ Rails.application.routes.draw do
   get '/logout', to: "sessions#delete"
 
   get '/welcome2', to: "main#welcome2"
+
 
 end

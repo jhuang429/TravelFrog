@@ -6,7 +6,12 @@ class CitiesController < ApplicationController
     end
 
     def show
-        
+        if @city.current_user_trip(session[:user_id])
+            @trip = @city.current_user_trip(session[:user_id])
+        else 
+            @trip = Trip.new
+        end
+
     end
 
     def new

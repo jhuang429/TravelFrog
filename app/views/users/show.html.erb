@@ -1,17 +1,80 @@
+<!--
 <h1><%= @user.name %>'s Profile</h1> 
 
 <% if session[:user_id] == @user.id %> 
-<%= button_to "edit profile", edit_user_path, method: "get" %>
+<%= button_to "edit profile", edit_user_path, method: "get", class:"btn btn-success btn-sm" %>
 <% end%>
 
 <br>
 
+<div class="profile_header">
 <img src="<%=@user.photo%>" width="200" height="200" >
 <h2>Username: <%= @user.user_name %></h2>
+<div>
 
 <h3>Hometown: <%= @user.hometown %></h3>
 <h4>Age: <%= @user.age %></h4>
 <p>About <%= @user.first_name %>: <%= @user.bio %></p>
 
+<h3> My Favorite Cities </h3>
+<% @user.trips.each do |trip| %>
+    
+    <a href="/cities/<% trip.city.id%>"> <img src='<%= trip.city.photo%>' height="200" width="200"> </a>   
+<%end %>
+
+    -->
+
+
+
+<div class="container">
+    <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+					<img src="<%=@user.photo%>" class="img-responsive" alt="">
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						<%= @user.name %>
+					</div>
+					<div class="profile-usertitle-job">
+						<%= @user.user_name %>
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+                <% if session[:user_id] == @user.id %> 
+                    <%= button_to "edit profile", edit_user_path, method: "get", class:"btn btn-success btn-sm" %> <br> 
+					<button type="button" class="btn btn-danger btn-sm">Delete Profile</button>
+                    <% end%>
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+
+			</div>
+		</div>
+        
+		<div class="col-md-9">
+            <div class="profile-content">
+                <h1><%= @user.name %>'s Profile</h1> 
+                <br>
+                <h4>Age: <%= @user.age %></h4>
+                <p>Bio: <%= @user.first_name %>: <%= @user.bio %></p>
+                <h4>Hometown: <%= @user.hometown %></h4>
+
+            <h3> My Favorite Cities </h3>
+			   <% @user.trips.each do |trip| %>
+                <a href="/cities/<% trip.city.id%>"> <img src='<%= trip.city.photo%>' height="200" width="200"> </a>   
+                <%end %>
+            </div>
+		</div>
+	</div>
+</div>
+
+<br>
+<br>
 
 

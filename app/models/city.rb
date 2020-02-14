@@ -4,11 +4,52 @@ class City < ApplicationRecord
 
 
 
-    def weather
-    response = Unirest.get "https://community-open-weather-map.p.rapidapi.com/weather?callback=test&id=2172797&units=%2522metric%2522+or+%2522imperial%2522&mode=xml%252C+html&q=New+York%252C+NY",
+    def airportfinderapi
+        response = Unirest.get "https://cometari-airportsfinder-v1.p.rapidapi.com/api/airports/by-text?text=#{self.name}",
         headers:{
-    "X-RapidAPI-Host" => "community-open-weather-map.p.rapidapi.com",
-    "X-RapidAPI-Key" => "79e8994724msh9d1fabde5ed6ebbp1d50f1jsn9248e1921f53"
-    }
+          "X-RapidAPI-Host" => "cometari-airportsfinder-v1.p.rapidapi.com",
+          "X-RapidAPI-Key" => "79e8994724msh9d1fabde5ed6ebbp1d50f1jsn9248e1921f53"
+        }
+        response.body[0]
     end
+
+    def current_user_trip(user)
+        self.trips.find do |trip|
+            if  trip.user_id == user
+                trip
+            end
+        end
+    end
+
+    def airport_code
+        self.airportfinderapi["code"]
+    end
+
+    # def country
+    #     self.airportfinderapi["countryCode"]
+    # end
+
+    def location 
+        str = ""
+        self.airportfinderapi["location"].each do |k, v|
+            str = "Longitude: #{v}, Latitude: #{v}"
+        end
+        str
+    end
+
+    def themes
+        self.airportfinderapi["themes"].join(", ")
+    end
+
+    # Over all review 
+    def avg_rating 
+        total = 0
+        trips = self.trips.map {|t| t.rating}.compact
+            trips.each do |trip|
+             total += trip
+            end 
+        (total / trips.count.to_f) 
+
+    end 
+
 end
