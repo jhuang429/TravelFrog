@@ -12,17 +12,13 @@
         <!-- Title -->
         <h1 class="mt-4"> <%= @city.name %> </h1>
 
-        <!-- Author -->
-        <h3>
-          Country: <strong><%= @city.country %></strong>
-        </h3>
+        <h3> Country: <strong><%= @city.country %></strong> </h3>
 
 			Airport Code:  <%= @city.airport_code%> <br>
+			Currency:  <%= @city.currency%> <br>
+
         <hr>
 
-		<% if @city.avg_rating > 0 %>
-			Overall rating: <%= @city.avg_rating.round(2)%> stars
-		<% end %>
 
 			<% if session[:user_id] %>
 		<% if @trip.id  %>
@@ -35,13 +31,16 @@
 			<% end%>
 		<% end%>
 
-	<% end%>
+		<% end%>
 
 
 
-        <hr>
 
-        <!-- Preview Image -->
+
+
+ 
+
+        <!-- weather -->
         <img class="img-fluid rounded" src="<%=@city.photo%>"  width="800" height="200" alt="">
 
 		<div>
@@ -56,10 +55,45 @@
 
 	</div>
 
-        <!-- Post Content -->
+        <!-- wiki content -->
         <p class="lead">	<h2>Info: </h2>
 	<p><%= Wikipedia.find("#{@city.name}").text.split('. ').slice(0, 6).join('. ')%></p></p>
 
+
+        <hr>
+
+<!--fligh data -->
+Cheapest Flights from <%= User.find_by(id: session[:user_id]).airport %>:
+		<table style="width:100%">
+
+  <tr>
+    <th>Airline</th>
+    <th>Flight#</th>
+    <th>Depart</th>
+    <th>Return</th>
+    <th>Price</th>
+  </tr>
+	
+	<% if session[:user_id] %>
+<% if @city.cheap_flight(User.find_by(id: session[:user_id]).airport) %>
+	<% @city.cheap_flight(User.find_by(id: session[:user_id]).airport).each do |k, v| %>
+  		<tr>
+			<td><%= v["airline"] %></td>
+			<td><%= v["flight_number"] %></td>
+			<td><%= v["departure_at"] %></td>
+			<td><%= v["return_at"] %></td>
+			<td>$<%= v["price"] %></td>
+ 		 </tr>
+		<% end %>
+		<% else %>   		
+			<tr>
+				<td>No flights</td>
+
+			</tr>
+		<% end %>
+<% end%>
+
+</table>
 
 	
 
@@ -121,7 +155,30 @@
           </div>
         </div>
 
-        <!-- Categories Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Overall rating: 	</h5>
+          <div class="card-body">
+            <div class="input-group">
+		<% if @city.avg_rating > 0 %>
+			<%= @city.avg_rating.round(2)%> stars
+		<% end %>
+		        <hr>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- users that liked -->
         <div class="card my-4">
           <h5 class="card-header"><%= @city.users.count %> People have travelled here:</h5>
           <div class="card-body">
@@ -148,6 +205,8 @@
 
 
 <!--
+
+Flight searching widget
 
 	<div id="mmd-flight-widget"></div> 
 	<script type="text/javascript">(function initWidget() {

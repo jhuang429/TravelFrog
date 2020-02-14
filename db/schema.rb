@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_10_164248) do
+ActiveRecord::Schema.define(version: 2020_02_14_154452) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2020_02_10_164248) do
     t.string "weather_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "airport_code"
+    t.string "currency"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -39,11 +41,12 @@ ActiveRecord::Schema.define(version: 2020_02_10_164248) do
     t.string "user_name"
     t.string "password_digest"
     t.string "bio"
-    t.string "photo"
+    t.string "photo", default: "/assets/frog-174cec3496eb3a3407c0339c3d921efd145a5babf01e4ad307718ffda042ffef.png"
     t.string "hometown"
     t.integer "age"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "airport"
   end
 
   add_foreign_key "trips", "cities"

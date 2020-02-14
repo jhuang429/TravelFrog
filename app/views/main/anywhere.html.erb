@@ -1,0 +1,19 @@
+<% if @city.cheap_flight %>
+	<% @city.cheap_flight.each do |k, v| %>
+  		<tr>
+			<td><%= v["airline"] %></td>
+			<td><%= v["flight_number"] %></td>
+			<td><%= v["departure_at"] %></td>
+			<td><%= v["return_at"] %></td>
+			<td>$<%= v["price"] %></td>
+ 		 </tr>
+		<% end %>
+		<% else %>   		
+			<tr>
+				<td>No flights</td>
+
+			</tr>
+		<% end %>
+
+
+</table>

@@ -1,3 +1,4 @@
+
 <h1> Sign Up for New Account </h1>
 <% if flash[:errors] %>
    <% flash[:errors].each do |error|%>
@@ -5,7 +6,31 @@
     <%end %>
     <%end %>
     
-<%= render 'form' %>
+<%= form_for @user do |f| %>
+
+<%= f.label :first_name %>
+<%= f.text_field :first_name%> <br>
+
+<%= f.label :last_name %>
+<%= f.text_field :last_name%><br>
+
+<%= f.label :user_name %>
+<%= f.text_field :user_name%><br>
+
+<%= f.label :password %>
+<%= f.text_field :password%><br>
+
+<% codes = [ "JFK","ATL", "LAX", "ORD", "DFW", "DEN", "SFO", "SEA", "LAS", "MCO", "EWR", "CLT", "PHX", "IAH", "MIA", "BOS", "MSP", "FLL", "DTW", "PHL", "LGA", "BWI", "SLC", "SAN", "IAD", "DCA", "MDW", "TPA", "PDX", "HNL", "PEK", "HND", "DXB", "LHR", "PVG", "HKG", "CDG", "CAN", "ICN", "AMS", "FRA", "SIN", "BKK", "DEL", "CGK", "KUL", "MAD", "CTU", "SZX", "BCN", "YYZ"] %>
+
+<%= f.label :airport %>
+<%= f.collection_select :airport, codes , :to_s, :to_s, include_blank: false%><br>
+
+<%= f.label :photo %>
+<%= f.text_field :photo %><br>
+
+<%= f.submit %><br>
+
+<% end %>
 
 <br>
 <br>
