@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/faker-ruby/faker.git
-  revision: 4a0d6c54a8bf9929f6d816631cf749cc019cb13f
+  revision: 4ae95f4606249dcd455fc9aadb64d4b161921609
   branch: master
   specs:
     faker (2.10.1)
@@ -89,7 +89,7 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     childprocess (3.0.0)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     crass (1.0.6)
     erubi (1.9.0)
     execjs (2.7.0)
@@ -136,19 +136,19 @@ GEM
     multi_xml (0.6.0)
     nio4r (2.5.2)
     nio4r (2.5.2-java)
-    nokogiri (1.10.7)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
-    nokogiri (1.10.7-java)
-    nokogiri (1.10.7-x64-mingw32)
+    nokogiri (1.10.8-java)
+    nokogiri (1.10.8-x64-mingw32)
       mini_portile2 (~> 2.4.0)
-    nokogiri (1.10.7-x86-mingw32)
+    nokogiri (1.10.8-x86-mingw32)
       mini_portile2 (~> 2.4.0)
     popper_js (1.16.0)
     puma (4.3.1)
       nio4r (~> 2.0)
     puma (4.3.1-java)
       nio4r (~> 2.0)
-    rack (2.2.1)
+    rack (2.2.2)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
