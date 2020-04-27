@@ -34,20 +34,19 @@ City.create(name: "Seoul", country: "South Korea", photo: "https://lonelyplaneti
 City.create(name: "Washington DC", country: "USA", photo: "https://lonelyplanetstatic.imgix.net/marketing/2020/BIT/cities/Washington_DC_shutterstockRF_1063696139.jpg?q=72&sharp=10&w=1330&vib=20", weather_url: "38d91n77d04/washington", airport_code: "IAD", currency: "US Dollar")
 
 
-User.create!(first_name: "Jerry", last_name: "Huang", user_name: "jhuang9240", password: "123", bio:"Hello world", photo:"https://scontent.fbos1-1.fna.fbcdn.net/v/t1.0-9/p960x960/31855230_10211444081002660_2088790209775796224_o.jpg?_nc_cat=100&_nc_ohc=XInJ6EJeBJwAX9sI5L9&_nc_ht=scontent.fbos1-1.fna&_nc_tp=6&oh=6e22cb87dc9cd9f1cedb512e4d9e9645&oe=5ED1F551", hometown: "New York", age: "28", airport_code: "JFK", currency: "US Dollar")
+User.create!(first_name: "Jerry", last_name: "Huang", user_name: "jhuang9240", password: "123", bio:"Hello world", photo:"https://scontent.fbos1-1.fna.fbcdn.net/v/t1.0-9/p960x960/31855230_10211444081002660_2088790209775796224_o.jpg?_nc_cat=100&_nc_ohc=XInJ6EJeBJwAX9sI5L9&_nc_ht=scontent.fbos1-1.fna&_nc_tp=6&oh=6e22cb87dc9cd9f1cedb512e4d9e9645&oe=5ED1F551", hometown: "New York", age: "28", airport: "JFK")
 
-User.create(first_name: "Mocha", last_name: "Ali", user_name: "Amazing_Mocha", password: "123", bio:"Hello world", photo:"https://scontent.fbos1-2.fna.fbcdn.net/v/t1.0-1/p240x240/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_ohc=7xi9VE2EZRgAX_6xwqz&_nc_ht=scontent.fbos1-2.fna&_nc_tp=6&oh=aa87fc9533336aebe3b371d8b5636fc1&oe=5EC11521", hometown: "New York", age: "31", airport_code: "JFK", currency: "US Dollar")
+User.create(first_name: "Mocha", last_name: "Ali", user_name: "Amazing_Mocha", password: "123", bio:"Hello world", photo:"https://scontent.fbos1-2.fna.fbcdn.net/v/t1.0-1/p240x240/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_ohc=7xi9VE2EZRgAX_6xwqz&_nc_ht=scontent.fbos1-2.fna&_nc_tp=6&oh=aa87fc9533336aebe3b371d8b5636fc1&oe=5EC11521", hometown: "New York", age: "31", airport: "JFK")
 
 
 
 
 50.times do 
     people << User.create!(first_name: Faker::Name.first_name, 
-    last_name: Faker::Name.last_name, user_name: Faker::Twitter.screen_name, password: "123", bio:"Hello people", photo:UiFaces.face, hometown: Faker::Address.country, age: "31")
+    last_name: Faker::Name.last_name, user_name: Faker::Twitter.screen_name, password: "123", bio:"Hello people", photo:UiFaces.face, hometown: Faker::Address.country, age: "31", airport: "JFK")
 end
 
 User.all.each do |user|
-    Trip.create(user: user, city: City.all.sample, rating: [1,2,3,4.5].sample, review: Faker::Hipster.paragraph(sentence_count: 3) )
     Trip.create(user: user, city: City.all.sample, rating: [1,2,3,4.5].sample, review: Faker::Hipster.paragraph(sentence_count: 3) )
     Trip.create(user: user, city: City.all.sample, rating: [1,2,3,4.5].sample, review: Faker::Hipster.paragraph(sentence_count: 3) )
 end
