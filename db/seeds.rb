@@ -42,8 +42,7 @@ User.create(first_name: "Mocha", last_name: "Ali", user_name: "Amazing_Mocha", p
 
 
 50.times do 
-    people << User.create!(first_name: Faker::Name.first_name, 
-    last_name: Faker::Name.last_name, user_name: Faker::Twitter.screen_name, password: "123", bio:"Hello people", photo:UiFaces.face, hometown: Faker::Address.country, age: "31", airport: "JFK")
+    User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, user_name: Faker::Twitter.screen_name, password: "123", bio:"Hello people", photo:UiFaces.face, hometown: Faker::Address.country, age: "31", airport: "JFK")
 end
 
 User.all.each do |user|
