@@ -1,24 +1,9 @@
-# README
+# Travel Frog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Travel Frog is a mock social media website created with only Ruby on Rails. It was created to demonstrate the power and speed of utilizing the Rails built-in framework. 
 
-Things you may want to cover:
+The website allows inspires users to travel by browsing travel destinations, specifically cities. Users can find helpful travel information such as a short city bio, attractions, current weather, airport, current airfare, and other users' comments. 
 
-* Ruby version
+The application uses multiple APIs to pull the most current information. Postgres database is used to organize destinations and user information 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Demo can be found here
