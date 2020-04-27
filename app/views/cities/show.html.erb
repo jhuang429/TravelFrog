@@ -1,275 +1,160 @@
 <% require "wikipedia" %>
-
-
-	<!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-
-      <!-- Post Content Column -->
-      <div class="col-lg-8">
-
-        <!-- Title -->
-        <h1 class="mt-4"> <%= @city.name %> </h1>
-
-        <h3> Country: <strong><%= @city.country %></strong> </h3>
-
-			Airport Code:  <%= @city.airport_code%> <br>
-			Currency:  <%= @city.currency%> <br>
-
-        <hr>
-
-
-			<% if session[:user_id] %>
-		<% if @trip.id  %>
-			<%= button_to "Unfavorite City", "/trips/#{@trip.id}", method: "delete", class: "btn btn-primary" %>
-		<% else  %>
-			<%= form_for @trip do |f| %>
-			<%= f.hidden_field :city_id, value: @city.id%>
-			<%= f.hidden_field :user_id, value: session[:user_id] %>
-			<%= f.submit "Add To Favorite", class:'btn btn-primary' %>
-			<% end%>
-		<% end%>
-
-		<% end%>
-
-
-
-
-
-
- 
-
-        <!-- weather -->
-        <img class="img-fluid rounded" src="<%=@city.photo%>"  width="800" height="200" alt="">
-
-		<div>
-
-        		<a class="weatherwidget-io" href="https://forecast7.com/en/<%= @city.weather_url %>/?unit=us" data-label_1="<%= @city.name %>" data-label_2="WEATHER" data-theme="original" ><%= @city.name %> WEATHER</a>
-	<script>
-	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)	){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-	</script>
-
-
-	
-
-	</div>
-
-        <!-- wiki content -->
-        <p class="lead">	<h2>Info: </h2>
-	<p><%= Wikipedia.find("#{@city.name}").text.split('. ').slice(0, 6).join('. ')%></p></p>
-
-
-        <hr>
-
-<!--fligh data -->
-Cheapest Flights from <%= User.find_by(id: session[:user_id]).airport %>:
-		<table style="width:100%">
-
-  <tr>
-    <th>Airline</th>
-    <th>Flight#</th>
-    <th>Depart</th>
-    <th>Return</th>
-    <th>Price</th>
-  </tr>
-	
-	<% if session[:user_id] %>
-<% if @city.cheap_flight(User.find_by(id: session[:user_id]).airport) %>
-	<% @city.cheap_flight(User.find_by(id: session[:user_id]).airport).each do |k, v| %>
-  		<tr>
-			<td><%= v["airline"] %></td>
-			<td><%= v["flight_number"] %></td>
-			<td><%= v["departure_at"] %></td>
-			<td><%= v["return_at"] %></td>
-			<td>$<%= v["price"] %></td>
- 		 </tr>
-		<% end %>
-		<% else %>   		
-			<tr>
-				<td>No flights</td>
-
-			</tr>
-		<% end %>
-<% end%>
-
-</table>
-
-	
-
-
-
-        <hr>
-
-	<%if @trip.id %>
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <!-- Post Content Column -->
+    <div class="col-lg-8">
+      <!-- Title -->
+      <h1 class="mt-4"> <%= @city.name %> </h1>
+      <h3> Country: <strong><%= @city.country %></strong> </h3>
+      Airport Code:  <%= @city.airport_code%> <br>
+      Currency:  <%= @city.currency%> <br>
+      <hr>
+      <% if session[:user_id] %>
+        <% if @trip.id  %>
+          <%= button_to "Unfavorite City", "/trips/#{@trip.id}", method: "delete", class: "btn btn-primary" %>
+        <% else  %>
+          <%= form_for @trip do |f| %>
+            <%= f.hidden_field :city_id, value: @city.id%>
+            <%= f.hidden_field :user_id, value: session[:user_id] %>
+            <%= f.submit "Add To Favorite", class:'btn btn-primary' %>
+          <% end%>
+        <% end%>
+      <% end%>
+      <!-- weather -->
+      <img class="img-fluid rounded" src="<%=@city.photo%>"  width="800" height="200" alt="">
+      <div>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/<%= @city.weather_url %>/?unit=us" data-label_1="<%= @city.name %>" data-label_2="WEATHER" data-theme="original" ><%= @city.name %> WEATHER</a>
+        <script>
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)	){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        </script>
+      </div>
+      <!-- wiki content -->
+      <p class="lead">	
+        <h2>Info: </h2>
+        <p><%= Wikipedia.find("#{@city.name}").text.split('. ').slice(0, 6).join('. ')%></p>
+      </p>
+      <hr>
+      <!--fligh data -->
+      <% if session[:user_id] %>
+        Cheapest Flights from <%= User.find_by(id: session[:user_id]).airport %>:
+        <table style="width:100%">
+          <tr>
+            <th>Airline</th>
+            <th>Flight#</th>
+            <th>Depart</th>
+            <th>Return</th>
+            <th>Price</th>
+          </tr>
+          <% if @city.cheap_flight(User.find_by(id: session[:user_id]).airport) %>
+            <% @city.cheap_flight(User.find_by(id: session[:user_id]).airport).each do |k, v| %>
+              <tr>
+                <td><%= v["airline"] %></td>
+                <td><%= v["flight_number"] %></td>
+                <td><%= v["departure_at"] %></td>
+                <td><%= v["return_at"] %></td>
+                <td>$<%= v["price"] %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td>No flights</td>
+            </tr>
+          <% end %>
+        <% else %>
+          <b>Sign in to view from your own airport</b>
+		  <br></br>
+		  Flights from JFK
+		          <table style="width:100%">
+          <tr>
+            <th>Airline</th>
+            <th>Flight#</th>
+            <th>Depart</th>
+            <th>Return</th>
+            <th>Price</th>
+          </tr>
+            <% @city.cheap_flight().each do |k, v| %>
+              <tr>
+                <td><%= v["airline"] %></td>
+                <td><%= v["flight_number"] %></td>
+                <td><%= v["departure_at"] %></td>
+                <td><%= v["return_at"] %></td>
+                <td>$<%= v["price"] %></td>
+              </tr>
+            <% end %>
+		  
+		  
+        <% end%>
+      </table>
+      <hr>
+      <%if @trip.id %>
         <!-- Comments Form -->
         <div class="card my-4">
           <h5 class="card-header">Leave a Review:</h5>
           <div class="card-body">
-		  <%= form_for @trip do |f|%>
-			Rating:<%= f.collection_select :rating, [1,2,3,4,5], :to_s, :to_s, include_blank: false %> stars
-			<div class="form-group">
-				<%= f.text_area :review, class:"form-control", placeholder:"Write review here!", rows: '5'%>
-			</div>
-
-			<%= f.button "Leave Review", class:"btn btn-primary"  %>
-						</div>
-						</div>
-			<% end%>
-	<% end %>
-
-	<% @city.trips.each do |trip| %>
-			<%if trip.rating && trip.review %>
-				<div class="media mb-4">
-				<a href="/users/<%= trip.user.id%>"> <img class="d-flex mr-3 rounded-circle" src="<%= trip.user.photo %>" width="50px",width="50px"> </a>
-				<div class="media-body">
-					<h5 class="mt-0"><a href="/users/<%= trip.user.id%>"> <%= trip.user.user_name %>  </a> </strong> rated: <%=  trip.rating  %> star(s)</h5>
-					<%= trip.review %>
-				</div>
-				</div>
-		<% end %>
-	<% end %>
-
-
-
-
-
-
-
-
-      </div>
-
-      <!-- Sidebar Widgets Column -->
-      <div class="col-md-4">
-
-        <!-- Search Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Search</h5>
-          <div class="card-body">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="card my-4">
-          <h5 class="card-header">Overall rating: 	</h5>
-          <div class="card-body">
-            <div class="input-group">
-		<% if @city.avg_rating > 0 %>
-			<%= @city.avg_rating.round(2)%> stars
-		<% end %>
-		        <hr>
-            </div>
-          </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- users that liked -->
-        <div class="card my-4">
-          <h5 class="card-header"><%= @city.users.count %> People have travelled here:</h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-12">
-					<% @city.trips.each do |trip| %>
-						<a href="/users/<%= trip.user.id%>"><img class="rounded-circle" src="<%= trip.user.photo %>" width="50px",width="50px"></a>
-					<% end%>
-
+            <%= form_for @trip do |f|%>
+              Rating:<%= f.collection_select :rating, [1,2,3,4,5], :to_s, :to_s, include_blank: false %> stars
+              <div class="form-group">
+                <%= f.text_area :review, class:"form-control", placeholder:"Write review here!", rows: '5'%>
               </div>
-              </div>
+              <%= f.button "Leave Review", class:"btn btn-primary"  %>
             </div>
           </div>
+        <% end%>
+      <% end %>
+      <% @city.trips.each do |trip| %>
+        <%if trip.rating && trip.review %>
+          <div class="media mb-4">
+            <a href="/users/<%= trip.user.id%>"> <img class="d-flex mr-3 rounded-circle" src="<%= trip.user.photo %>" width="50px",width="50px"> </a>
+            <div class="media-body">
+              <h5 class="mt-0"><a href="/users/<%= trip.user.id%>"> <%= trip.user.user_name %>  </a> </strong> rated: <%=  trip.rating  %> star(s)</h5>
+            <%= trip.review %>
+          </div>
         </div>
-
-
-      </div>
-
-    </div>
-    <!-- /.row -->
-
+      <% end %>
+    <% end %>
+    <hr>
   </div>
-  <!-- /.container -->
+  <!-- Sidebar Widgets Column -->
+  <div class="col-md-4">
+    <!-- Search Widget -->
+    <div class="card my-4">
+      <h5 class="card-header">Search</h5>
+      <div class="card-body">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button">Go!</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="card my-4">
+      <h5 class="card-header">Overall rating: 	</h5>
+      <div class="card-body">
+        <div class="input-group">
+          <% if @city.avg_rating > 0 %>
+            <%= @city.avg_rating.round(2)%> stars
+          <% end %>
+          <hr>
+        </div>
+      </div>
+    </div>
+    <!-- users that liked -->
+    <div class="card my-4">
+      <h5 class="card-header"><%= @city.users.count %> People have travelled here:</h5>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <% @city.trips.each do |trip| %>
+              <a href="/users/<%= trip.user.id%>"><img class="rounded-circle" src="<%= trip.user.photo %>" width="50px",width="50px"></a>
+            <% end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
 
-
-<!--
-
-Flight searching widget
-
-	<div id="mmd-flight-widget"></div> 
-	<script type="text/javascript">(function initWidget() {
-		var options = {	
-			layout: {	
-				theme: "momondo"
-				, width: "930"	
-				, height: "180"	
-			},					
-			airports: {			
-				origin: "EWR",	
-				destination: "<%= @city.airport_code %>	"
-			},					
-			settings: {			
-				openNewWindow: true,	
-				domain: "www.momondo.com",		
-				source: ""			
-			}								
-		};									
-		var settings = options.settings;	
-		var airports = options.airports;	
-		var layout = options.layout;		
-		var encoding = null;				
-		onWidgetLoad = function (f)			
-		{									
-			f("mmd-flight-widget", {		
-				searchForms: [{				
-					type: 1,				
-					searchURL: "https://[DOMAIN][PATH][QUERY]" + (!!settings.source ? "&source=" + settings.source : ""),	
-					openNewWindow: settings.openNewWindow,				
-					currency: settings.currency,						
-					segments: [											
-						{												
-							airports: [									
-								{ code: airports.origin || "" },		
-								{ code: airports.destination || "" }	
-							]											
-						},												
-						{												
-							airports: [									
-								{ code: airports.destination || "" },	
-								{ code: airports.origin || "" }		 	
-							]	
-						}		
-					]			
-				}]				
-			});					
-		};						
-		var scr = document.createElement("script");
-		scr["src"] = "https://" + settings.domain + "/widget/searchform/v1.0/?dimensions=" + (layout.width && layout.height ? (layout.width + "x" + layout.height) : "generic") + "&types=1&callback=onWidgetLoad&theme=" + layout.theme;	
-		var tag = document.getElementsByTagName("head");	
-		if (tag && tag.length)		
-		{							
-			tag = tag[0];			
-			tag.appendChild(scr);	
-		}							
-	})();
-	</script>
-
-
--->
-
-
-</body>
-
-</html>
