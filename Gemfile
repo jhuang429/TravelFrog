@@ -18,8 +18,6 @@ gem 'ui_faces'
 
 gem 'json', '~> 1.8', '>= 1.8.3'
 
-gem 'httparty', '~> 0.13.7'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use sqlite3 as the database for Active Record
@@ -73,3 +71,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'figaro'
+
+gem "rest-client", ">= 1.8.0"
