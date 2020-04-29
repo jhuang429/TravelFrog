@@ -63,24 +63,6 @@
           <% end %>
         <% else %>
           <b>Sign in to view from your own airport</b>
-		  <br></br>
-		  Flights from JFK
-		          <table style="width:100%">
-          <tr>
-            <th>Airline</th>
-            <th>Flight#</th>
-            <th>Depart</th>
-            <th>Return</th>
-            <th>Price</th>
-          </tr>
-            <% @city.cheap_flight().each do |k, v| %>
-              <tr>
-                <td><%= v["airline"] %></td>
-                <td><%= v["flight_number"] %></td>
-                <td><%= v["departure_at"] %></td>
-                <td><%= v["return_at"] %></td>
-                <td>$<%= v["price"] %></td>
-              </tr>
             <% end %>
 		  
 		  
