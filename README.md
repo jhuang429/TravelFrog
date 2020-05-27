@@ -6,4 +6,4 @@ The website allows inspires users to travel by browsing travel destinations, spe
 
 The application uses multiple APIs to pull the most current information. Postgres database is used to organize destinations and user information 
 
-Demo can be found here
+Demo can be found here: https://travelfrog.herokuapp.com/
