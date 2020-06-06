@@ -101,9 +101,6 @@ GEM
       thor (~> 0.14)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    httparty (0.13.7)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.0)
@@ -135,7 +132,6 @@ GEM
     msgpack (1.3.3-java)
     msgpack (1.3.3-x64-mingw32)
     msgpack (1.3.3-x86-mingw32)
-    multi_xml (0.6.0)
     nio4r (2.5.2)
     nio4r (2.5.2-java)
     nokogiri (1.10.9)
@@ -259,7 +255,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-driver (0.7.1-java)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     wikipedia-client (1.10.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
@@ -280,7 +276,6 @@ DEPENDENCIES
   capybara (>= 2.15)
   faker!
   figaro
-  httparty (~> 0.13.7)
   jbuilder (~> 2.7)
   jquery-rails
   json (~> 1.8, >= 1.8.3)
